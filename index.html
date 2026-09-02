@@ -1,0 +1,1551 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌍 Global Mega Portal - Complete Digital Life</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================================
+           CSS VARIABLES
+           ============================================================ */
+        :root {
+            --bg-primary: #f0f2f5;
+            --bg-secondary: #ffffff;
+            --bg-card: rgba(255, 255, 255, 0.85);
+            --bg-card-hover: rgba(255, 255, 255, 0.95);
+            --text-primary: #0f172a;
+            --text-secondary: #334155;
+            --text-muted: #94a3b8;
+            --border-color: rgba(226, 232, 240, 0.6);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+            --shadow-hover: 0 16px 48px rgba(0, 0, 0, 0.12);
+            --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.04);
+            --accent: #2563eb;
+            --accent-hover: #1d4ed8;
+            --accent-light: #dbeafe;
+            --accent-gradient: linear-gradient(135deg, #2563eb, #7c3aed, #ec4899);
+            --whatsapp-color: #25D366;
+            --whatsapp-hover: #128C7E;
+            --visa-color: #2563eb;
+            --airline-color: #8b5cf6;
+            --hotel-color: #10b981;
+            --flight-color: #f59e0b;
+            --taxi-color: #f97316;
+            --bus-color: #06b6d4;
+            --train-color: #7c3aed;
+            --shop-color: #ec4899;
+            --food-color: #ef4444;
+            --job-color: #14b8a6;
+            --radius: 20px;
+            --radius-sm: 12px;
+            --radius-card: 16px;
+            --transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --font: 'Poppins', 'Segoe UI', sans-serif;
+            --blur-bg: rgba(255, 255, 255, 0.7);
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0a0e1a;
+            --bg-secondary: #141b2d;
+            --bg-card: rgba(20, 27, 45, 0.9);
+            --bg-card-hover: rgba(30, 41, 59, 0.95);
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --text-muted: #64748b;
+            --border-color: rgba(71, 85, 105, 0.5);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 16px 48px rgba(0, 0, 0, 0.5);
+            --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.3);
+            --blur-bg: rgba(10, 14, 26, 0.85);
+            --accent: #3b82f6;
+            --accent-hover: #60a5fa;
+            --accent-light: #1e3a5f;
+            --whatsapp-color: #25D366;
+            --whatsapp-hover: #128C7E;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            transition: background 0.5s, color 0.5s;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .bg-animation {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .bg-animation .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+            animation: orbFloat 20s ease-in-out infinite alternate;
+        }
+        .bg-animation .orb:nth-child(1) { width: 600px; height: 600px; background: #2563eb; top: -200px; right: -200px; }
+        .bg-animation .orb:nth-child(2) { width: 500px; height: 500px; background: #7c3aed; bottom: -150px; left: -150px; animation-delay: -7s; }
+        .bg-animation .orb:nth-child(3) { width: 400px; height: 400px; background: #ec4899; top: 50%; left: 50%; transform: translate(-50%, -50%); animation-delay: -14s; }
+
+        @keyframes orbFloat {
+            0% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(60px, -40px) scale(1.1); }
+            66% { transform: translate(-40px, 60px) scale(0.9); }
+            100% { transform: translate(30px, -30px) scale(1.05); }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1450px;
+            margin: 0 auto;
+            padding: 20px 25px 30px;
+        }
+
+        .glass-header {
+            background: var(--blur-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: var(--radius);
+            padding: 24px 30px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+            transition: background 0.5s, border-color 0.5s;
+            margin-bottom: 20px;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .header-left { display: flex; align-items: center; gap: 15px; }
+        .logo-icon {
+            width: 50px; height: 50px;
+            border-radius: 14px;
+            background: var(--accent-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            color: white;
+            box-shadow: 0 8px 24px rgba(37, 99, 235, 0.3);
+            flex-shrink: 0;
+        }
+        .header-title h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .header-title .sub {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .header-title .sub .badge { color: white; padding: 2px 12px; border-radius: 20px; font-size: 0.6rem; font-weight: 700; -webkit-text-fill-color: white; }
+        .header-title .sub .badge-visa { background: var(--visa-color); }
+        .header-title .sub .badge-airline { background: var(--airline-color); }
+        .header-title .sub .badge-hotel { background: var(--hotel-color); }
+        .header-title .sub .badge-shop { background: var(--shop-color); }
+        .header-title .sub .badge-food { background: var(--food-color); }
+        .header-title .sub .badge-job { background: var(--job-color); }
+        .header-title .sub .badge-taxi { background: var(--taxi-color); }
+
+        .header-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+        .badge-pro {
+            background: var(--accent-gradient);
+            color: white;
+            padding: 5px 16px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .theme-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            padding: 8px 18px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font);
+        }
+        .theme-btn:hover {
+            background: var(--bg-card-hover);
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-2px);
+        }
+        .theme-btn i { font-size: 0.9rem; color: var(--accent); }
+
+        /* ============================================================
+           WHATSAPP BUTTON - FLOATING
+           ============================================================ */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 90px;
+            right: 30px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .whatsapp-float .whatsapp-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 68px;
+            height: 68px;
+            border-radius: 50%;
+            background: var(--whatsapp-color);
+            color: white;
+            font-size: 2.4rem;
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.45);
+            transition: var(--transition);
+            text-decoration: none;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+        }
+
+        .whatsapp-float .whatsapp-btn:hover {
+            transform: scale(1.12) translateY(-4px);
+            background: var(--whatsapp-hover);
+            box-shadow: 0 12px 40px rgba(37, 211, 102, 0.6);
+        }
+
+        .whatsapp-float .whatsapp-btn .notification-dot {
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #ef4444;
+            border: 2px solid var(--bg-secondary);
+            font-size: 0.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .whatsapp-float .whatsapp-label {
+            background: var(--blur-bg);
+            backdrop-filter: blur(12px);
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-card);
+            white-space: nowrap;
+            transition: var(--transition);
+        }
+
+        .whatsapp-float .whatsapp-label:hover {
+            transform: scale(1.05);
+            border-color: var(--whatsapp-color);
+        }
+
+        .whatsapp-float .whatsapp-label i {
+            color: var(--whatsapp-color);
+            margin-right: 4px;
+        }
+
+        /* Ripple Effect */
+        .whatsapp-float .ripple {
+            position: absolute;
+            width: 68px;
+            height: 68px;
+            border-radius: 50%;
+            background: var(--whatsapp-color);
+            opacity: 0.3;
+            animation: rippleAnim 2s infinite;
+            z-index: -1;
+        }
+
+        @keyframes rippleAnim {
+            0% { transform: scale(1); opacity: 0.4; }
+            100% { transform: scale(1.6); opacity: 0; }
+        }
+
+        /* ============================================================
+           TAB NAVIGATION
+           ============================================================ */
+        .tab-navigation {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            overflow-x: auto;
+            padding-bottom: 5px;
+        }
+        .tab-btn {
+            padding: 10px 18px;
+            border: 2px solid var(--border-color);
+            border-radius: 50px;
+            background: var(--blur-bg);
+            backdrop-filter: blur(8px);
+            cursor: pointer;
+            font-size: 0.7rem;
+            font-weight: 600;
+            transition: var(--transition);
+            color: var(--text-secondary);
+            font-family: var(--font);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .tab-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+        .tab-btn.active {
+            background: var(--accent-gradient);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.25);
+        }
+        .tab-btn i { font-size: 0.9rem; }
+
+        .tab-content { display: none; animation: fadeInUp 0.5s ease; }
+        .tab-content.active { display: block; }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ============================================================
+           STATS DASHBOARD
+           ============================================================ */
+        .stats-dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .stat-card {
+            background: var(--blur-bg);
+            backdrop-filter: blur(12px);
+            border-radius: var(--radius-sm);
+            padding: 12px 14px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-card);
+            transition: var(--transition);
+            text-align: center;
+        }
+        .stat-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); border-color: var(--accent); }
+        .stat-card .stat-icon { font-size: 1.1rem; margin-bottom: 3px; }
+        .stat-card .stat-number { font-size: 1.2rem; font-weight: 800; color: var(--text-primary); line-height: 1.2; }
+        .stat-card .stat-label { font-size: 0.6rem; color: var(--text-muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.3px; }
+
+        .stat-card.visa-stat .stat-icon { color: var(--visa-color); }
+        .stat-card.airline-stat .stat-icon { color: var(--airline-color); }
+        .stat-card.hotel-stat .stat-icon { color: var(--hotel-color); }
+        .stat-card.flight-stat .stat-icon { color: var(--flight-color); }
+        .stat-card.taxi-stat .stat-icon { color: var(--taxi-color); }
+        .stat-card.bus-stat .stat-icon { color: var(--bus-color); }
+        .stat-card.train-stat .stat-icon { color: var(--train-color); }
+        .stat-card.shop-stat .stat-icon { color: var(--shop-color); }
+        .stat-card.food-stat .stat-icon { color: var(--food-color); }
+        .stat-card.job-stat .stat-icon { color: var(--job-color); }
+
+        /* ============================================================
+           SEARCH
+           ============================================================ */
+        .search-section {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+        .search-wrapper {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .search-wrapper input {
+            flex: 1;
+            min-width: 180px;
+            padding: 14px 22px;
+            border: 2px solid var(--border-color);
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-family: var(--font);
+            outline: none;
+            transition: var(--transition);
+            background: var(--blur-bg);
+            backdrop-filter: blur(12px);
+            color: var(--text-primary);
+        }
+        .search-wrapper input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 5px var(--accent-light);
+        }
+        .search-wrapper input::placeholder { color: var(--text-muted); }
+        .search-wrapper .search-btn {
+            padding: 14px 26px;
+            border: none;
+            border-radius: 50px;
+            background: var(--accent-gradient);
+            color: white;
+            font-weight: 600;
+            font-size: 0.95rem;
+            font-family: var(--font);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+        .search-wrapper .search-btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 30px rgba(37, 99, 235, 0.3);
+        }
+
+        /* ============================================================
+           SERVICE GRID
+           ============================================================ */
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+            gap: 12px;
+        }
+        .service-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            border-radius: var(--radius-card);
+            padding: 16px 18px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-card);
+            transition: var(--transition);
+            animation: cardAppear 0.5s ease forwards;
+            opacity: 0;
+            transform: translateY(20px);
+            text-align: center;
+        }
+        @keyframes cardAppear {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .service-card:hover {
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: var(--shadow-hover);
+            background: var(--bg-card-hover);
+        }
+        .service-card .service-icon { font-size: 1.8rem; margin-bottom: 6px; display: block; }
+        .service-card .service-name { font-weight: 700; font-size: 0.9rem; color: var(--text-primary); margin-bottom: 3px; }
+        .service-card .service-desc { font-size: 0.7rem; color: var(--text-muted); margin-bottom: 8px; }
+        .service-card .service-features {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+            font-size: 0.6rem;
+            color: var(--text-secondary);
+        }
+        .service-card .service-features span { display: flex; align-items: center; gap: 3px; }
+        .service-card .service-features i { color: var(--accent); }
+        .service-card .service-link {
+            color: white;
+            padding: 6px 18px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 0.7rem;
+            font-weight: 700;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .service-card .service-link:hover { transform: scale(1.05); }
+        .service-card .service-link i { font-size: 0.65rem; transition: var(--transition); }
+        .service-card:hover .service-link i { transform: translateX(4px); }
+
+        .service-card.visa .service-icon { color: var(--visa-color); }
+        .service-card.visa .service-link { background: var(--visa-color); }
+        .service-card.visa:hover { border-color: var(--visa-color); }
+
+        .service-card.airline .service-icon { color: var(--airline-color); }
+        .service-card.airline .service-link { background: var(--airline-color); }
+        .service-card.airline:hover { border-color: var(--airline-color); }
+
+        .service-card.hotel .service-icon { color: var(--hotel-color); }
+        .service-card.hotel .service-link { background: var(--hotel-color); }
+        .service-card.hotel:hover { border-color: var(--hotel-color); }
+
+        .service-card.flight .service-icon { color: var(--flight-color); }
+        .service-card.flight .service-link { background: var(--flight-color); }
+        .service-card.flight:hover { border-color: var(--flight-color); }
+
+        .service-card.taxi .service-icon { color: var(--taxi-color); }
+        .service-card.taxi .service-link { background: var(--taxi-color); }
+        .service-card.taxi:hover { border-color: var(--taxi-color); }
+
+        .service-card.bus .service-icon { color: var(--bus-color); }
+        .service-card.bus .service-link { background: var(--bus-color); }
+        .service-card.bus:hover { border-color: var(--bus-color); }
+
+        .service-card.train .service-icon { color: var(--train-color); }
+        .service-card.train .service-link { background: var(--train-color); }
+        .service-card.train:hover { border-color: var(--train-color); }
+
+        .service-card.shop .service-icon { color: var(--shop-color); }
+        .service-card.shop .service-link { background: var(--shop-color); }
+        .service-card.shop:hover { border-color: var(--shop-color); }
+
+        .service-card.food .service-icon { color: var(--food-color); }
+        .service-card.food .service-link { background: var(--food-color); }
+        .service-card.food:hover { border-color: var(--food-color); }
+
+        .service-card.job .service-icon { color: var(--job-color); }
+        .service-card.job .service-link { background: var(--job-color); }
+        .service-card.job:hover { border-color: var(--job-color); }
+
+        /* ============================================================
+           NO RESULTS
+           ============================================================ */
+        .no-results {
+            text-align: center;
+            padding: 50px 20px;
+            display: none;
+            background: var(--blur-bg);
+            backdrop-filter: blur(12px);
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+        }
+        .no-results i { font-size: 3rem; color: var(--text-muted); margin-bottom: 12px; display: block; }
+        .no-results h3 { font-size: 1.2rem; color: var(--text-secondary); font-weight: 600; }
+        .no-results p { color: var(--text-muted); margin-top: 4px; }
+
+        /* ============================================================
+           FOOTER
+           ============================================================ */
+        .footer {
+            margin-top: 30px;
+            padding: 20px 25px;
+            background: var(--blur-bg);
+            backdrop-filter: blur(16px);
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 14px;
+            transition: background 0.5s, border-color 0.5s;
+        }
+        .footer .footer-text { color: var(--text-muted); font-size: 0.75rem; }
+        .footer .footer-text i { color: var(--accent); }
+        .footer .footer-links { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+        .footer .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: 500;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .footer .footer-links a:hover { color: var(--accent); transform: translateY(-2px); }
+        .footer .footer-links .divider { color: var(--border-color); }
+
+        /* ============================================================
+           SCROLL TOP
+           ============================================================ */
+        .top-btn {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: none;
+            background: var(--accent-gradient);
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 8px 30px rgba(37, 99, 235, 0.35);
+            transition: var(--transition);
+            z-index: 999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+        .top-btn:hover { transform: scale(1.1) translateY(-4px); box-shadow: 0 12px 40px rgba(37, 99, 235, 0.5); }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 992px) {
+            .container { padding: 14px 16px; }
+            .glass-header { padding: 18px 20px; }
+            .header-title h1 { font-size: 1.4rem; }
+            .logo-icon { width: 42px; height: 42px; font-size: 1.3rem; }
+            .stats-dashboard { grid-template-columns: repeat(3, 1fr); }
+            .service-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+            .whatsapp-float .whatsapp-btn { width: 58px; height: 58px; font-size: 2rem; }
+            .whatsapp-float .ripple { width: 58px; height: 58px; }
+        }
+        @media (max-width: 768px) {
+            .container { padding: 10px 12px; }
+            .glass-header { padding: 14px 16px; }
+            .header-content { flex-direction: column; align-items: stretch; }
+            .header-actions { justify-content: space-between; }
+            .header-title h1 { font-size: 1.2rem; }
+            .logo-icon { width: 36px; height: 36px; font-size: 1.1rem; }
+            .stats-dashboard { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+            .stat-card .stat-number { font-size: 1rem; }
+            .stat-card .stat-label { font-size: 0.55rem; }
+            .service-grid { grid-template-columns: 1fr 1fr; }
+            .search-wrapper input { padding: 12px 16px; font-size: 0.85rem; }
+            .search-wrapper .search-btn { padding: 12px 18px; font-size: 0.85rem; }
+            .tab-btn { padding: 8px 12px; font-size: 0.65rem; }
+            .footer { flex-direction: column; text-align: center; padding: 14px 16px; }
+            .top-btn { width: 42px; height: 42px; font-size: 1rem; bottom: 16px; right: 16px; }
+            .bg-animation .orb { display: none; }
+            .whatsapp-float { bottom: 80px; right: 16px; }
+            .whatsapp-float .whatsapp-btn { width: 52px; height: 52px; font-size: 1.6rem; }
+            .whatsapp-float .ripple { width: 52px; height: 52px; }
+            .whatsapp-float .whatsapp-label { font-size: 0.6rem; padding: 4px 12px; }
+        }
+        @media (max-width: 480px) {
+            .container { padding: 8px 8px; }
+            .glass-header { padding: 10px 12px; border-radius: 14px; }
+            .header-title h1 { font-size: 1rem; }
+            .header-title .sub .badge { font-size: 0.5rem; padding: 1px 8px; }
+            .badge-pro { font-size: 0.55rem; padding: 3px 10px; }
+            .theme-btn { padding: 6px 12px; font-size: 0.7rem; }
+            .stats-dashboard { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+            .stat-card { padding: 8px 10px; }
+            .stat-card .stat-number { font-size: 0.9rem; }
+            .stat-card .stat-label { font-size: 0.5rem; }
+            .service-grid { grid-template-columns: 1fr; }
+            .tab-btn { padding: 6px 10px; font-size: 0.6rem; min-width: 60px; }
+            .service-card { padding: 12px 14px; }
+            .service-card .service-name { font-size: 0.8rem; }
+            .service-card .service-desc { font-size: 0.65rem; }
+            .whatsapp-float { bottom: 70px; right: 12px; }
+            .whatsapp-float .whatsapp-btn { width: 46px; height: 46px; font-size: 1.4rem; }
+            .whatsapp-float .ripple { width: 46px; height: 46px; }
+            .whatsapp-float .whatsapp-label { font-size: 0.55rem; padding: 3px 10px; }
+        }
+
+        @media print {
+            .bg-animation, .top-btn, .whatsapp-float { display: none !important; }
+            .glass-header, .stat-card, .service-card, .footer {
+                background: white !important;
+                backdrop-filter: none !important;
+                border: 1px solid #ddd !important;
+            }
+            .service-card:hover { transform: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ============================================================
+     WHATSAPP FLOATING BUTTON
+     ============================================================ -->
+<div class="whatsapp-float">
+    <a href="https://wa.me/34661444876" target="_blank" class="whatsapp-btn" aria-label="Chat on WhatsApp">
+        <span class="ripple"></span>
+        <i class="fab fa-whatsapp"></i>
+        <span class="notification-dot">1</span>
+    </a>
+    <span class="whatsapp-label">
+        <i class="fab fa-whatsapp"></i> Chat with us
+    </span>
+</div>
+
+<div class="bg-animation">
+    <div class="orb"></div>
+    <div class="orb"></div>
+    <div class="orb"></div>
+</div>
+
+<div class="container">
+
+    <!-- ===== HEADER ===== -->
+    <header class="glass-header">
+        <div class="header-content">
+            <div class="header-left">
+                <div class="logo-icon"><i class="fas fa-globe-asia"></i></div>
+                <div class="header-title">
+                    <h1>Global Mega Portal</h1>
+                    <div class="sub">
+                        <i class="fas fa-check-circle" style="color: var(--accent);"></i>
+                        190+ Countries
+                        <span class="badge badge-visa"><i class="fas fa-passport"></i> Visa</span>
+                        <span class="badge badge-airline"><i class="fas fa-plane"></i> Air</span>
+                        <span class="badge badge-hotel"><i class="fas fa-hotel"></i> Hotel</span>
+                        <span class="badge badge-shop"><i class="fas fa-shopping-cart"></i> Shop</span>
+                        <span class="badge badge-food"><i class="fas fa-utensils"></i> Food</span>
+                        <span class="badge badge-job"><i class="fas fa-briefcase"></i> Job</span>
+                        <span class="badge badge-taxi"><i class="fas fa-taxi"></i> Transport</span>
+                    </div>
+                </div>
+            </div>
+            <div class="header-actions">
+                <span class="badge-pro"><i class="fas fa-star"></i> Premium</span>
+                <button class="theme-btn" onclick="toggleTheme()">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                    <span id="themeText">Dark</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== TAB NAVIGATION ===== -->
+    <div class="tab-navigation">
+        <button class="tab-btn active" data-tab="visa" onclick="switchTab('visa')"><i class="fas fa-passport"></i> Visa</button>
+        <button class="tab-btn" data-tab="airline" onclick="switchTab('airline')"><i class="fas fa-plane"></i> Air</button>
+        <button class="tab-btn" data-tab="hotel" onclick="switchTab('hotel')"><i class="fas fa-hotel"></i> Hotel</button>
+        <button class="tab-btn" data-tab="flight" onclick="switchTab('flight')"><i class="fas fa-ticket-alt"></i> Flight</button>
+        <button class="tab-btn" data-tab="taxi" onclick="switchTab('taxi')"><i class="fas fa-taxi"></i> Taxi</button>
+        <button class="tab-btn" data-tab="bus" onclick="switchTab('bus')"><i class="fas fa-bus"></i> Bus</button>
+        <button class="tab-btn" data-tab="train" onclick="switchTab('train')"><i class="fas fa-train"></i> Train</button>
+        <button class="tab-btn" data-tab="shop" onclick="switchTab('shop')"><i class="fas fa-shopping-cart"></i> Shop</button>
+        <button class="tab-btn" data-tab="food" onclick="switchTab('food')"><i class="fas fa-utensils"></i> Food</button>
+        <button class="tab-btn" data-tab="job" onclick="switchTab('job')"><i class="fas fa-briefcase"></i> Job</button>
+    </div>
+
+    <!-- ===== STATS ===== -->
+    <div class="stats-dashboard">
+        <div class="stat-card visa-stat"><div class="stat-icon"><i class="fas fa-passport"></i></div><div class="stat-number" id="visaCount">0</div><div class="stat-label">Visa</div></div>
+        <div class="stat-card airline-stat"><div class="stat-icon"><i class="fas fa-plane"></i></div><div class="stat-number" id="airlineCount">0</div><div class="stat-label">Air</div></div>
+        <div class="stat-card hotel-stat"><div class="stat-icon"><i class="fas fa-hotel"></i></div><div class="stat-number" id="hotelCount">0</div><div class="stat-label">Hotel</div></div>
+        <div class="stat-card flight-stat"><div class="stat-icon"><i class="fas fa-ticket-alt"></i></div><div class="stat-number" id="flightCount">0</div><div class="stat-label">Flight</div></div>
+        <div class="stat-card taxi-stat"><div class="stat-icon"><i class="fas fa-taxi"></i></div><div class="stat-number" id="taxiCount">0</div><div class="stat-label">Taxi</div></div>
+        <div class="stat-card bus-stat"><div class="stat-icon"><i class="fas fa-bus"></i></div><div class="stat-number" id="busCount">0</div><div class="stat-label">Bus</div></div>
+        <div class="stat-card train-stat"><div class="stat-icon"><i class="fas fa-train"></i></div><div class="stat-number" id="trainCount">0</div><div class="stat-label">Train</div></div>
+        <div class="stat-card shop-stat"><div class="stat-icon"><i class="fas fa-shopping-cart"></i></div><div class="stat-number" id="shopCount">0</div><div class="stat-label">Shop</div></div>
+        <div class="stat-card food-stat"><div class="stat-icon"><i class="fas fa-utensils"></i></div><div class="stat-number" id="foodCount">0</div><div class="stat-label">Food</div></div>
+        <div class="stat-card job-stat"><div class="stat-icon"><i class="fas fa-briefcase"></i></div><div class="stat-number" id="jobCount">0</div><div class="stat-label">Job</div></div>
+    </div>
+
+    <!-- ============================================================
+         TAB 1: VISA
+         ============================================================ -->
+    <div class="tab-content active" id="tab-visa">
+        <div class="search-section">
+            <div class="search-wrapper">
+                <input type="text" id="visaSearch" placeholder="🔍 Search country for visa..." onkeyup="filterVisa()">
+                <button class="search-btn" onclick="filterVisa()"><i class="fas fa-search"></i> Search</button>
+            </div>
+        </div>
+        <div id="visaList" class="service-grid"></div>
+        <div id="visaNoResults" class="no-results">
+            <i class="fas fa-search"></i>
+            <h3>No visa information found</h3>
+            <p>Please try a different search</p>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         TAB 2: AIRLINE
+         ============================================================ -->
+    <div class="tab-content" id="tab-airline">
+        <div class="search-section">
+            <div class="search-wrapper">
+                <input type="text" id="airlineSearch" placeholder="🔍 Search airlines..." onkeyup="filterAirline()">
+                <button class="search-btn" onclick="filterAirline()"><i class="fas fa-search"></i> Search</button>
+            </div>
+        </div>
+        <div id="airlineList" class="service-grid"></div>
+        <div id="airlineNoResults" class="no-results">
+            <i class="fas fa-plane-slash"></i>
+            <h3>No airlines found</h3>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         TAB 3: HOTEL
+         ============================================================ -->
+    <div class="tab-content" id="tab-hotel">
+        <div class="search-section">
+            <div class="search-wrapper">
+                <input type="text" id="hotelSearch" placeholder="🔍 Search hotels..." onkeyup="filterHotel()">
+                <button class="search-btn" onclick="filterHotel()"><i class="fas fa-search"></i> Search</button>
+            </div>
+        </div>
+        <div id="hotelList" class="service-grid"></div>
+        <div id="hotelNoResults" class="no-results">
+            <i class="fas fa-hotel"></i>
+            <h3>No hotels found</h3>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         TAB 4: FLIGHT
+         ============================================================ -->
+    <div class="tab-content" id="tab-flight">
+        <div class="search-section">
+            <div class="search-wrapper">
+                <input type="text" id="flightSearch" placeholder="🔍 Search flight booking..." onkeyup="filterFlight()">
+                <button class="search-btn" onclick="filterFlight()"><i class="fas fa-search"></i> Search</button>
+            </div>
+        </div>
+        <div id="flightList" class="service-grid"></div>
+        <div id="flightNoResults" class="no-results">
+            <i class="fas fa-plane-slash"></i>
+            <h3>No flight websites found</h3>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         TAB 5: TAXI
+         ============================================================ -->
+    <div class="tab-content" id="tab-taxi">
+        <div class="search-section">
+            <div class="search-wrapper">
+                <input type="text" id="taxiSearch" placeholder="🔍 Search taxi apps..." onkeyup="filterTaxi()">
+                <button class="search-btn" onclick="filterTaxi()"><i class="fas fa-search"></i> Search</button>
+            </div>
+        </div>
+        <div id="taxiList" class="service-grid"></div>
+        <div id="taxiNoResults" class="no-results">
+            <i class="fas fa-taxi"></i>
+            <h3>No taxi apps found</h3>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         TAB 6: BUS
+         ============================================================ -->
+    <div class="tab-content" id="tab-bus">
+        <div class="search-section">
+            <div class="search-wrapper">
+                <input type="text" id="busSearch" placeholder="🔍 Search bus booking..." onkeyup="filterBus()">
+                <button class="search-btn" onclick="filterBus()"><i class="fas fa-search"></i> Search</button>
+            </div>
+        </div>
+        <div id="busList" class="service-grid"></div>
+        <div id="busNoResults" class="no-results">
+            <i class="fas fa-bus"></i>
+            <h3>No bus websites found</h3>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         TAB 7: TRAIN
+         ============================================================ -->
+    <div class="tab-content" id="tab-train">
+        <div class="search-section">
+            <div class="search-wrapper">
+                <input type="text" id="trainSearch" placeholder="🔍 Search train booking..." onkeyup="filterTrain()">
+                <button class="search-btn" onclick="filterTrain()"><i class="fas fa-search"></i> Search</button>
+            </div>
+        </div>
+        <div id="trainList" class="service-grid"></div>
+        <div id="trainNoResults" class="no-results">
+            <i class="fas fa-train"></i>
+            <h3>No train websites found</h3>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         TAB 8: SHOPPING
+         ============================================================ -->
+    <div class="tab-content" id="tab-shop">
+        <div class="search-section">
+            <div class="search-wrapper">
+                <input type="text" id="shopSearch" placeholder="🔍 Search online shops..." onkeyup="filterShop()">
+                <button class="search-btn" onclick="filterShop()"><i class="fas fa-search"></i> Search</button>
+            </div>
+        </div>
+        <div id="shopList" class="service-grid"></div>
+        <div id="shopNoResults" class="no-results">
+            <i class="fas fa-shopping-cart"></i>
+            <h3>No online shops found</h3>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         TAB 9: FOOD
+         ============================================================ -->
+    <div class="tab-content" id="tab-food">
+        <div class="search-section">
+            <div class="search-wrapper">
+                <input type="text" id="foodSearch" placeholder="🔍 Search food delivery..." onkeyup="filterFood()">
+                <button class="search-btn" onclick="filterFood()"><i class="fas fa-search"></i> Search</button>
+            </div>
+        </div>
+        <div id="foodList" class="service-grid"></div>
+        <div id="foodNoResults" class="no-results">
+            <i class="fas fa-utensils"></i>
+            <h3>No food websites found</h3>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         TAB 10: JOBS
+         ============================================================ -->
+    <div class="tab-content" id="tab-job">
+        <div class="search-section">
+            <div class="search-wrapper">
+                <input type="text" id="jobSearch" placeholder="🔍 Search job portals..." onkeyup="filterJob()">
+                <button class="search-btn" onclick="filterJob()"><i class="fas fa-search"></i> Search</button>
+            </div>
+        </div>
+        <div id="jobList" class="service-grid"></div>
+        <div id="jobNoResults" class="no-results">
+            <i class="fas fa-briefcase"></i>
+            <h3>No job portals found</h3>
+        </div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="footer-text">
+            <i class="fas fa-shield-alt"></i>
+            Complete Digital Life Portal - All services in one place
+        </div>
+        <div class="footer-links">
+            <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+                <i class="fas fa-arrow-up"></i> Top
+            </a>
+        </div>
+    </footer>
+</div>
+
+<button class="top-btn" id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <i class="fas fa-chevron-up"></i>
+</button>
+
+<!-- ============================================================
+     JAVASCRIPT
+     ============================================================ -->
+<script>
+    // ============================================================
+    // 🌍 VISA DATABASE (190+ Countries)
+    // ============================================================
+    const visaData = [
+        { name: "Afghanistan", link: "https://evisa.gov.af", type: "evisa" },
+        { name: "Albania", link: "https://e-visa.al", type: "evisa" },
+        { name: "Algeria", link: "https://www.mfa.gov.dz", type: "evisa" },
+        { name: "Andorra", link: "https://www.interior.ad", type: "free" },
+        { name: "Angola", link: "https://www.smevisa.gov.ao", type: "evisa" },
+        { name: "Argentina", link: "https://www.argentina.gob.ar/interior/migraciones", type: "evisa" },
+        { name: "Armenia", link: "https://evisa.mfa.am", type: "evisa" },
+        { name: "Australia", link: "https://immi.homeaffairs.gov.au", type: "evisa" },
+        { name: "Austria", link: "https://www.bmeia.gv.at", type: "required" },
+        { name: "Azerbaijan", link: "https://evisa.gov.az", type: "evisa" },
+        { name: "Bahrain", link: "http://www.evisa.gov.bh", type: "evisa" },
+        { name: "Bangladesh", link: "https://www.visa.gov.bd", type: "arrival" },
+        { name: "Belarus", link: "https://visa.gov.by", type: "evisa" },
+        { name: "Belgium", link: "https://www.dofi.fgov.be", type: "required" },
+        { name: "Benin", link: "https://evisa.bj", type: "evisa" },
+        { name: "Bhutan", link: "https://immi.gov.bt", type: "evisa" },
+        { name: "Bolivia", link: "https://www.migracion.gob.bo", type: "arrival" },
+        { name: "Brazil", link: "https://brazil.vfsevisa.com", type: "evisa" },
+        { name: "Brunei", link: "http://www.immigration.gov.bn", type: "free" },
+        { name: "Bulgaria", link: "https://www.mfa.bg", type: "required" },
+        { name: "Cambodia", link: "https://www.evisa.gov.kh", type: "evisa" },
+        { name: "Canada", link: "https://www.canada.ca/en/immigration-refugees-citizenship.html", type: "evisa" },
+        { name: "Chile", link: "https://tramites.extranjeria.gob.cl", type: "free" },
+        { name: "China", link: "https://www.visaforchina.cn", type: "required" },
+        { name: "Colombia", link: "https://www.migracioncolombia.gov.co", type: "free" },
+        { name: "Costa Rica", link: "https://www.migracion.go.cr", type: "free" },
+        { name: "Croatia", link: "https://www.mvep.hr", type: "required" },
+        { name: "Cuba", link: "https://www.dviajeros.mitrans.gob.cu", type: "arrival" },
+        { name: "Cyprus", link: "https://www.mfa.gov.cy", type: "evisa" },
+        { name: "Czech Republic", link: "https://www.mvcr.cz", type: "required" },
+        { name: "Denmark", link: "https://newtodenmark.dk", type: "required" },
+        { name: "Egypt", link: "https://www.visa2egypt.gov.eg", type: "evisa" },
+        { name: "Estonia", link: "https://www.politsei.ee", type: "required" },
+        { name: "Ethiopia", link: "https://www.evisa.gov.et", type: "evisa" },
+        { name: "Fiji", link: "https://www.immigration.gov.fj", type: "free" },
+        { name: "Finland", link: "https://migri.fi", type: "required" },
+        { name: "France", link: "https://france-visas.gouv.fr", type: "required" },
+        { name: "Georgia", link: "https://www.evisa.gov.ge", type: "evisa" },
+        { name: "Germany", link: "https://www.auswaertiges-amt.de", type: "required" },
+        { name: "Ghana", link: "https://www.ghanahighcommissionuk.com", type: "evisa" },
+        { name: "Greece", link: "https://www.mfa.gr", type: "required" },
+        { name: "Hungary", link: "https://www.mfa.gov.hu", type: "required" },
+        { name: "Iceland", link: "https://www.utl.is", type: "required" },
+        { name: "India", link: "https://indianvisaonline.gov.in", type: "evisa" },
+        { name: "Indonesia", link: "https://evisa.imigrasi.go.id", type: "arrival" },
+        { name: "Iran", link: "https://evisa.mfa.gov.ir", type: "evisa" },
+        { name: "Iraq", link: "https://evisa.iq", type: "arrival" },
+        { name: "Ireland", link: "https://www.irishimmigration.ie", type: "required" },
+        { name: "Israel", link: "https://israelvisa.mfa.gov.il", type: "evisa" },
+        { name: "Italy", link: "https://vistoperitalia.esteri.it", type: "required" },
+        { name: "Japan", link: "https://www.mofa.go.jp/j_info/visit/visa/", type: "required" },
+        { name: "Jordan", link: "https://eservices.moi.gov.jo", type: "arrival" },
+        { name: "Kazakhstan", link: "https://www.vmp.gov.kz", type: "evisa" },
+        { name: "Kenya", link: "https://www.etakenya.go.ke", type: "evisa" },
+        { name: "Kuwait", link: "https://evisa.moi.gov.kw", type: "evisa" },
+        { name: "Laos", link: "https://laoevisa.gov.la", type: "arrival" },
+        { name: "Lebanon", link: "https://evisa.mfa.gov.lb", type: "evisa" },
+        { name: "Malaysia", link: "https://eservices.imi.gov.my", type: "free" },
+        { name: "Maldives", link: "https://evisa.immigration.gov.mv", type: "arrival" },
+        { name: "Malta", link: "https://www.identitymalta.com", type: "required" },
+        { name: "Mauritius", link: "https://evisa.gov.mu", type: "free" },
+        { name: "Mexico", link: "https://www.gob.mx/inm", type: "evisa" },
+        { name: "Mongolia", link: "https://www.evisa.mn", type: "evisa" },
+        { name: "Montenegro", link: "https://evisa.gov.me", type: "evisa" },
+        { name: "Morocco", link: "https://www.acces-maroc.ma", type: "evisa" },
+        { name: "Myanmar", link: "https://evisa.moip.gov.mm", type: "evisa" },
+        { name: "Nepal", link: "https://www.nepalimmigration.gov.np", type: "arrival" },
+        { name: "Netherlands", link: "https://ind.nl", type: "required" },
+        { name: "New Zealand", link: "https://www.immigration.govt.nz", type: "evisa" },
+        { name: "Nigeria", link: "https://portal.immigration.gov.ng", type: "evisa" },
+        { name: "Norway", link: "https://www.udi.no", type: "required" },
+        { name: "Oman", link: "https://evisa.rop.gov.om", type: "evisa" },
+        { name: "Pakistan", link: "https://visa.nadra.gov.pk/e-visa/", type: "evisa" },
+        { name: "Panama", link: "https://www.migracion.gob.pa", type: "free" },
+        { name: "Peru", link: "https://www.gob.pe/migraciones", type: "free" },
+        { name: "Philippines", link: "https://www.dfa.gov.ph", type: "free" },
+        { name: "Poland", link: "https://www.gov.pl/web/udsc", type: "required" },
+        { name: "Portugal", link: "https://www.sef.pt", type: "required" },
+        { name: "Qatar", link: "https://hayya.qa", type: "evisa" },
+        { name: "Romania", link: "https://evisa.mae.ro", type: "evisa" },
+        { name: "Russia", link: "https://visa.kdmid.ru", type: "required" },
+        { name: "Rwanda", link: "https://irembo.gov.rw", type: "evisa" },
+        { name: "Saudi Arabia", link: "https://visa.mofa.gov.sa", type: "evisa" },
+        { name: "Serbia", link: "https://evisa.gov.rs", type: "evisa" },
+        { name: "Seychelles", link: "https://seychelles.govtas.com", type: "free" },
+        { name: "Singapore", link: "https://www.ica.gov.sg", type: "free" },
+        { name: "South Africa", link: "https://ehome.dha.gov.za", type: "evisa" },
+        { name: "South Korea", link: "https://www.visa.go.kr", type: "evisa" },
+        { name: "Spain", link: "https://www.exteriores.gob.es", type: "required" },
+        { name: "Sri Lanka", link: "http://www.eta.gov.lk", type: "evisa" },
+        { name: "Sweden", link: "https://www.migrationsverket.se", type: "required" },
+        { name: "Switzerland", link: "https://www.sem.admin.ch", type: "required" },
+        { name: "Tanzania", link: "https://visa.immigration.go.tz", type: "evisa" },
+        { name: "Thailand", link: "https://www.thaievisa.go.th", type: "arrival" },
+        { name: "Turkey", link: "https://www.evisa.gov.tr", type: "evisa" },
+        { name: "Uganda", link: "https://visas.immigration.go.ug", type: "evisa" },
+        { name: "Ukraine", link: "https://evisa.mfa.gov.ua", type: "evisa" },
+        { name: "UAE", link: "https://icp.gov.ae", type: "evisa" },
+        { name: "United Kingdom", link: "https://www.gov.uk/apply-uk-visa", type: "required" },
+        { name: "United States", link: "https://travel.state.gov", type: "required" },
+        { name: "Uruguay", link: "https://www.migracion.gub.uy", type: "free" },
+        { name: "Uzbekistan", link: "https://e-visa.gov.uz", type: "evisa" },
+        { name: "Vietnam", link: "https://evisa.gov.vn", type: "evisa" },
+        { name: "Zambia", link: "https://eservices.zambiaimmigration.gov.zm", type: "evisa" },
+        { name: "Zimbabwe", link: "https://www.evisa.gov.zw", type: "evisa" },
+    ];
+
+    // ============================================================
+    // ✈️ AIRLINES
+    // ============================================================
+    const airlines = [
+        { name: "Emirates", link: "https://www.emirates.com", country: "UAE", type: "Premium" },
+        { name: "Qatar Airways", link: "https://www.qatarairways.com", country: "Qatar", type: "Premium" },
+        { name: "Singapore Airlines", link: "https://www.singaporeair.com", country: "Singapore", type: "Premium" },
+        { name: "Turkish Airlines", link: "https://www.turkishairlines.com", country: "Turkey", type: "Premium" },
+        { name: "British Airways", link: "https://www.britishairways.com", country: "UK", type: "Premium" },
+        { name: "Lufthansa", link: "https://www.lufthansa.com", country: "Germany", type: "Premium" },
+        { name: "Air France", link: "https://www.airfrance.com", country: "France", type: "Premium" },
+        { name: "KLM", link: "https://www.klm.com", country: "Netherlands", type: "Premium" },
+        { name: "Delta Airlines", link: "https://www.delta.com", country: "USA", type: "Premium" },
+        { name: "American Airlines", link: "https://www.aa.com", country: "USA", type: "Premium" },
+        { name: "United Airlines", link: "https://www.united.com", country: "USA", type: "Premium" },
+        { name: "Etihad Airways", link: "https://www.etihad.com", country: "UAE", type: "Premium" },
+        { name: "Air India", link: "https://www.airindia.com", country: "India", type: "Premium" },
+        { name: "Japan Airlines", link: "https://www.jal.com", country: "Japan", type: "Premium" },
+        { name: "Korean Air", link: "https://www.koreanair.com", country: "South Korea", type: "Premium" },
+        { name: "Cathay Pacific", link: "https://www.cathaypacific.com", country: "Hong Kong", type: "Premium" },
+        { name: "Air Arabia", link: "https://www.airarabia.com", country: "UAE", type: "Budget" },
+        { name: "Fly Dubai", link: "https://www.flydubai.com", country: "UAE", type: "Budget" },
+        { name: "IndiGo", link: "https://www.goindigo.in", country: "India", type: "Budget" },
+        { name: "SpiceJet", link: "https://www.spicejet.com", country: "India", type: "Budget" },
+        { name: "AirAsia", link: "https://www.airasia.com", country: "Malaysia", type: "Budget" },
+        { name: "Ryanair", link: "https://www.ryanair.com", country: "Ireland", type: "Budget" },
+        { name: "EasyJet", link: "https://www.easyjet.com", country: "UK", type: "Budget" },
+        { name: "Wizz Air", link: "https://wizzair.com", country: "Hungary", type: "Budget" },
+        { name: "JetBlue", link: "https://www.jetblue.com", country: "USA", type: "Budget" },
+        { name: "Southwest Airlines", link: "https://www.southwest.com", country: "USA", type: "Budget" },
+        { name: "Air Mauritius", link: "https://www.airmauritius.com", country: "Mauritius", type: "Regional" },
+        { name: "Garuda Indonesia", link: "https://www.garuda-indonesia.com", country: "Indonesia", type: "Regional" },
+        { name: "Philippine Airlines", link: "https://www.philippineairlines.com", country: "Philippines", type: "Regional" },
+        { name: "Thai Airways", link: "https://www.thaiairways.com", country: "Thailand", type: "Regional" },
+        { name: "Malaysia Airlines", link: "https://www.malaysiaairlines.com", country: "Malaysia", type: "Regional" },
+        { name: "Air New Zealand", link: "https://www.airnewzealand.com", country: "New Zealand", type: "Regional" },
+        { name: "Qantas", link: "https://www.qantas.com", country: "Australia", type: "Regional" },
+        { name: "LATAM", link: "https://www.latam.com", country: "Chile", type: "Regional" },
+        { name: "Royal Air Maroc", link: "https://www.royalairmaroc.com", country: "Morocco", type: "Regional" },
+        { name: "Ethiopian Airlines", link: "https://www.ethiopianairlines.com", country: "Ethiopia", type: "Regional" },
+    ];
+
+    // ============================================================
+    // 🏨 HOTELS
+    // ============================================================
+    const hotels = [
+        { name: "Booking.com", link: "https://www.booking.com", region: "Worldwide", type: "Global" },
+        { name: "Agoda", link: "https://www.agoda.com", region: "Worldwide", type: "Global" },
+        { name: "Expedia", link: "https://www.expedia.com", region: "Worldwide", type: "Global" },
+        { name: "Hotels.com", link: "https://www.hotels.com", region: "Worldwide", type: "Global" },
+        { name: "TripAdvisor", link: "https://www.tripadvisor.com", region: "Worldwide", type: "Global" },
+        { name: "Trivago", link: "https://www.trivago.com", region: "Worldwide", type: "Global" },
+        { name: "Kayak", link: "https://www.kayak.com", region: "Worldwide", type: "Global" },
+        { name: "Skyscanner", link: "https://www.skyscanner.com", region: "Worldwide", type: "Global" },
+        { name: "Oyo Rooms", link: "https://www.oyorooms.com", region: "India/Asia", type: "Regional" },
+        { name: "Goibibo", link: "https://www.goibibo.com", region: "India", type: "Regional" },
+        { name: "MakeMyTrip", link: "https://www.makemytrip.com", region: "India", type: "Regional" },
+        { name: "Traveloka", link: "https://www.traveloka.com", region: "SE Asia", type: "Regional" },
+        { name: "RedDoorz", link: "https://www.reddoorz.com", region: "SE Asia", type: "Regional" },
+        { name: "Accor Hotels", link: "https://www.accor.com", region: "Worldwide", type: "Regional" },
+        { name: "Hilton Hotels", link: "https://www.hilton.com", region: "Worldwide", type: "Regional" },
+        { name: "Marriott Hotels", link: "https://www.marriott.com", region: "Worldwide", type: "Regional" },
+        { name: "Hostelworld", link: "https://www.hostelworld.com", region: "Worldwide", type: "Budget" },
+        { name: "Airbnb", link: "https://www.airbnb.com", region: "Worldwide", type: "Budget" },
+        { name: "Couchsurfing", link: "https://www.couchsurfing.com", region: "Worldwide", type: "Budget" },
+        { name: "VRBO", link: "https://www.vrbo.com", region: "Worldwide", type: "Budget" },
+    ];
+
+    // ============================================================
+    // 🎫 FLIGHTS
+    // ============================================================
+    const flights = [
+        { name: "Skyscanner", link: "https://www.skyscanner.com", type: "Compare" },
+        { name: "Kayak", link: "https://www.kayak.com", type: "Compare" },
+        { name: "Google Flights", link: "https://www.google.com/travel/flights", type: "Compare" },
+        { name: "Momondo", link: "https://www.momondo.com", type: "Compare" },
+        { name: "Kiwi.com", link: "https://www.kiwi.com", type: "Compare" },
+        { name: "Expedia", link: "https://www.expedia.com", type: "Booking" },
+        { name: "Booking.com", link: "https://www.booking.com", type: "Booking" },
+        { name: "Priceline", link: "https://www.priceline.com", type: "Booking" },
+        { name: "Orbitz", link: "https://www.orbitz.com", type: "Booking" },
+        { name: "CheapOair", link: "https://www.cheapoair.com", type: "Booking" },
+        { name: "Last Minute", link: "https://www.lastminute.com", type: "Booking" },
+        { name: "AirAsia", link: "https://www.airasia.com", type: "Budget" },
+        { name: "Ryanair", link: "https://www.ryanair.com", type: "Budget" },
+        { name: "EasyJet", link: "https://www.easyjet.com", type: "Budget" },
+        { name: "Southwest", link: "https://www.southwest.com", type: "Budget" },
+        { name: "JetBlue", link: "https://www.jetblue.com", type: "Budget" },
+    ];
+
+    // ============================================================
+    // 🚕 TAXI
+    // ============================================================
+    const taxiData = [
+        { name: "Uber", link: "https://www.uber.com", region: "Worldwide" },
+        { name: "Lyft", link: "https://www.lyft.com", region: "USA/Canada" },
+        { name: "Careem", link: "https://www.careem.com", region: "Middle East" },
+        { name: "Bolt", link: "https://www.bolt.eu", region: "Europe/Africa" },
+        { name: "Grab", link: "https://www.grab.com", region: "SE Asia" },
+        { name: "Gojek", link: "https://www.gojek.com", region: "Indonesia" },
+        { name: "Ola", link: "https://www.olacabs.com", region: "India" },
+        { name: "Didi Chuxing", link: "https://www.didiglobal.com", region: "China/Global" },
+        { name: "TaxiFareFinder", link: "https://www.taxifarefinder.com", region: "Worldwide" },
+        { name: "Curb", link: "https://www.curb.com", region: "USA" },
+        { name: "Free Now", link: "https://www.free-now.com", region: "Europe" },
+        { name: "Yandex Taxi", link: "https://taxi.yandex.com", region: "Russia/CIS" },
+        { name: "Snapp", link: "https://www.snapp.ir", region: "Iran" },
+        { name: "Juno", link: "https://www.juno.com", region: "USA" },
+        { name: "Via", link: "https://www.ridewithvia.com", region: "USA/Global" },
+        { name: "GetT", link: "https://www.gett.com", region: "UK/Global" },
+        { name: "Blacklane", link: "https://www.blacklane.com", region: "Worldwide" },
+        { name: "inDrive", link: "https://www.inDrive.com", region: "Worldwide" },
+    ];
+
+    // ============================================================
+    // 🚌 BUS
+    // ============================================================
+    const busData = [
+        { name: "RedBus", link: "https://www.redbus.com", region: "India/Global" },
+        { name: "Busbud", link: "https://www.busbud.com", region: "Worldwide" },
+        { name: "Bookaway", link: "https://www.bookaway.com", region: "Worldwide" },
+        { name: "12Go", link: "https://www.12go.asia", region: "SE Asia" },
+        { name: "EasyBus", link: "https://www.easybus.com", region: "Europe" },
+        { name: "FlixBus", link: "https://www.flixbus.com", region: "Europe/Worldwide" },
+        { name: "Megabus", link: "https://us.megabus.com", region: "USA/UK/Europe" },
+        { name: "Greyhound", link: "https://www.greyhound.com", region: "USA/Canada" },
+        { name: "National Express", link: "https://www.nationalexpress.com", region: "UK" },
+        { name: "Arriva", link: "https://www.arriva.com", region: "Europe" },
+        { name: "First Bus", link: "https://www.firstbus.co.uk", region: "UK" },
+        { name: "Stagecoach", link: "https://www.stagecoach.com", region: "UK" },
+        { name: "Transdev", link: "https://www.transdev.com", region: "Worldwide" },
+        { name: "Keolis", link: "https://www.keolis.com", region: "Worldwide" },
+        { name: "GoBus", link: "https://www.gobus.com", region: "USA" },
+        { name: "Peter Pan Bus", link: "https://www.peterpanbus.com", region: "USA" },
+        { name: "OurBus", link: "https://www.ourbus.com", region: "USA" },
+        { name: "Plataforma 10", link: "https://www.plataforma10.com", region: "Latin America" },
+        { name: "Omio", link: "https://www.omio.com", region: "Europe" },
+        { name: "Trainline", link: "https://www.thetrainline.com", region: "Europe" },
+    ];
+
+    // ============================================================
+    // 🚆 TRAIN
+    // ============================================================
+    const trainData = [
+        { name: "Rail Europe", link: "https://www.raileurope.com", region: "Europe" },
+        { name: "Eurail", link: "https://www.eurail.com", region: "Europe" },
+        { name: "Interrail", link: "https://www.interrail.eu", region: "Europe" },
+        { name: "Trainline", link: "https://www.thetrainline.com", region: "Europe" },
+        { name: "Amtrak", link: "https://www.amtrak.com", region: "USA" },
+        { name: "VIA Rail", link: "https://www.viarail.ca", region: "Canada" },
+        { name: "Deutsche Bahn", link: "https://www.bahn.com", region: "Germany" },
+        { name: "SNCF", link: "https://www.sncf.com", region: "France" },
+        { name: "Trenitalia", link: "https://www.trenitalia.com", region: "Italy" },
+        { name: "Renfe", link: "https://www.renfe.com", region: "Spain" },
+        { name: "Great British Railways", link: "https://www.gbr.co.uk", region: "UK" },
+        { name: "Loco2", link: "https://www.loco2.com", region: "Europe" },
+        { name: "Omio", link: "https://www.omio.com", region: "Europe" },
+        { name: "GoEuro", link: "https://www.goeuro.com", region: "Europe" },
+        { name: "Rail Ninja", link: "https://www.raileurope.com", region: "Worldwide" },
+        { name: "ScotRail", link: "https://www.scotrail.co.uk", region: "UK" },
+        { name: "TfL", link: "https://tfl.gov.uk", region: "UK" },
+        { name: "RATP", link: "https://www.ratp.fr", region: "France" },
+        { name: "Metro Madrid", link: "https://www.metromadrid.es", region: "Spain" },
+        { name: "BVG Berlin", link: "https://www.bvg.de", region: "Germany" },
+        { name: "Japan Railways", link: "https://www.japanrailpass.net", region: "Japan" },
+        { name: "IRCTC", link: "https://www.irctc.co.in", region: "India" },
+        { name: "China Railway", link: "https://www.12306.cn", region: "China" },
+        { name: "Korail", link: "https://www.letskorail.com", region: "South Korea" },
+        { name: "TGV", link: "https://www.ouigo.com", region: "France" },
+        { name: "Eurostar", link: "https://www.eurostar.com", region: "UK/France" },
+        { name: "Thalys", link: "https://www.thalys.com", region: "Europe" },
+    ];
+
+    // ============================================================
+    // 🛒 SHOPPING
+    // ============================================================
+    const shopData = [
+        { name: "Amazon", link: "https://www.amazon.com", region: "Worldwide", type: "Global" },
+        { name: "eBay", link: "https://www.ebay.com", region: "Worldwide", type: "Global" },
+        { name: "AliExpress", link: "https://www.aliexpress.com", region: "Worldwide", type: "Global" },
+        { name: "Walmart", link: "https://www.walmart.com", region: "USA/Global", type: "Global" },
+        { name: "Target", link: "https://www.target.com", region: "USA", type: "Regional" },
+        { name: "Best Buy", link: "https://www.bestbuy.com", region: "USA/Canada", type: "Regional" },
+        { name: "Home Depot", link: "https://www.homedepot.com", region: "USA", type: "Regional" },
+        { name: "Costco", link: "https://www.costco.com", region: "Worldwide", type: "Global" },
+        { name: "Etsy", link: "https://www.etsy.com", region: "Worldwide", type: "Global" },
+        { name: "Asos", link: "https://www.asos.com", region: "Worldwide", type: "Global" },
+        { name: "Zalando", link: "https://www.zalando.com", region: "Europe", type: "Regional" },
+        { name: "Flipkart", link: "https://www.flipkart.com", region: "India", type: "Regional" },
+        { name: "Snapdeal", link: "https://www.snapdeal.com", region: "India", type: "Regional" },
+        { name: "Meesho", link: "https://www.meesho.com", region: "India", type: "Regional" },
+        { name: "Shopee", link: "https://shopee.com", region: "SE Asia", type: "Regional" },
+        { name: "Lazada", link: "https://www.lazada.com", region: "SE Asia", type: "Regional" },
+        { name: "Rakuten", link: "https://www.rakuten.com", region: "Japan/Global", type: "Global" },
+        { name: "JD.com", link: "https://www.jd.com", region: "China", type: "Regional" },
+        { name: "Alibaba", link: "https://www.alibaba.com", region: "China/Global", type: "Global" },
+        { name: "Souq", link: "https://www.souq.com", region: "Middle East", type: "Regional" },
+        { name: "Noon", link: "https://www.noon.com", region: "Middle East", type: "Regional" },
+        { name: "Jumia", link: "https://www.jumia.com", region: "Africa", type: "Regional" },
+        { name: "Konga", link: "https://www.konga.com", region: "Nigeria", type: "Regional" },
+        { name: "Takealot", link: "https://www.takealot.com", region: "South Africa", type: "Regional" },
+        { name: "MercadoLibre", link: "https://www.mercadolibre.com", region: "Latin America", type: "Regional" },
+        { name: "Dafiti", link: "https://www.dafiti.com", region: "Latin America", type: "Regional" },
+        { name: "Cdiscount", link: "https://www.cdiscount.com", region: "France", type: "Regional" },
+        { name: "Fruugo", link: "https://www.fruugo.com", region: "Worldwide", type: "Global" },
+        { name: "Wish", link: "https://www.wish.com", region: "Worldwide", type: "Global" },
+        { name: "Temu", link: "https://www.temu.com", region: "Worldwide", type: "Global" },
+    ];
+
+    // ============================================================
+    // 🍔 FOOD
+    // ============================================================
+    const foodData = [
+        { name: "Uber Eats", link: "https://www.ubereats.com", region: "Worldwide" },
+        { name: "DoorDash", link: "https://www.doordash.com", region: "USA/Canada" },
+        { name: "Grubhub", link: "https://www.grubhub.com", region: "USA" },
+        { name: "Just Eat", link: "https://www.just-eat.com", region: "Europe/Global" },
+        { name: "Deliveroo", link: "https://www.deliveroo.com", region: "Europe/Global" },
+        { name: "Zomato", link: "https://www.zomato.com", region: "India/Global" },
+        { name: "Swiggy", link: "https://www.swiggy.com", region: "India" },
+        { name: "Foodpanda", link: "https://www.foodpanda.com", region: "Asia/Europe" },
+        { name: "GrabFood", link: "https://www.grab.com/food", region: "SE Asia" },
+        { name: "GoFood", link: "https://www.gojek.com/gofood", region: "Indonesia" },
+        { name: "Delivery Hero", link: "https://www.deliveryhero.com", region: "Worldwide" },
+        { name: "Talabat", link: "https://www.talabat.com", region: "Middle East" },
+        { name: "HungerStation", link: "https://www.hungerstation.com", region: "Middle East" },
+        { name: "Mrsool", link: "https://www.mrsool.com", region: "Middle East" },
+        { name: "Glovo", link: "https://www.glovoapp.com", region: "Europe/Africa" },
+        { name: "Bolt Food", link: "https://www.bolt.eu/food", region: "Europe" },
+        { name: "Wolt", link: "https://www.wolt.com", region: "Europe/Israel" },
+        { name: "Yemeksepeti", link: "https://www.yemeksepeti.com", region: "Turkey" },
+        { name: "Jumia Food", link: "https://food.jumia.com", region: "Africa" },
+        { name: "ChowNow", link: "https://www.chownow.com", region: "USA" },
+        { name: "Caviar", link: "https://www.trycaviar.com", region: "USA" },
+        { name: "Postmates", link: "https://www.postmates.com", region: "USA" },
+        { name: "Rappi", link: "https://www.rappi.com", region: "Latin America" },
+        { name: "iFood", link: "https://www.ifood.com.br", region: "Brazil" },
+        { name: "PedidosYa", link: "https://www.pedidosya.com", region: "Latin America" },
+        { name: "Sin Delantal", link: "https://www.sindelantal.com", region: "Mexico" },
+        { name: "Just Eat Takeaway", link: "https://www.justeattakeaway.com", region: "Europe" },
+        { name: "Delivery.com", link: "https://www.delivery.com", region: "USA" },
+        { name: "EatStreet", link: "https://www.eatstreet.com", region: "USA" },
+        { name: "Slice", link: "https://www.slicelife.com", region: "USA" },
+    ];
+
+    // ============================================================
+    // 💼 JOBS
+    // ============================================================
+    const jobData = [
+        { name: "LinkedIn", link: "https://www.linkedin.com/jobs", region: "Worldwide" },
+        { name: "Indeed", link: "https://www.indeed.com", region: "Worldwide" },
+        { name: "Glassdoor", link: "https://www.glassdoor.com", region: "Worldwide" },
+        { name: "Monster", link: "https://www.monster.com", region: "Worldwide" },
+        { name: "CareerBuilder", link: "https://www.careerbuilder.com", region: "USA" },
+        { name: "ZipRecruiter", link: "https://www.ziprecruiter.com", region: "USA" },
+        { name: "SimplyHired", link: "https://www.simplyhired.com", region: "Worldwide" },
+        { name: "Dice", link: "https://www.dice.com", region: "USA" },
+        { name: "Upwork", link: "https://www.upwork.com", region: "Worldwide" },
+        { name: "Fiverr", link: "https://www.fiverr.com", region: "Worldwide" },
+        { name: "Freelancer", link: "https://www.freelancer.com", region: "Worldwide" },
+        { name: "Toptal", link: "https://www.toptal.com", region: "Worldwide" },
+        { name: "Naukri", link: "https://www.naukri.com", region: "India" },
+        { name: "TimesJobs", link: "https://www.timesjobs.com", region: "India" },
+        { name: "Shine", link: "https://www.shine.com", region: "India" },
+        { name: "Monster India", link: "https://www.monsterindia.com", region: "India" },
+        { name: "Bayt", link: "https://www.bayt.com", region: "Middle East" },
+        { name: "GulfTalent", link: "https://www.gulftalent.com", region: "Middle East" },
+        { name: "NaukriGulf", link: "https://www.naukrigulf.com", region: "Middle East" },
+        { name: "Jobstreet", link: "https://www.jobstreet.com", region: "SE Asia" },
+        { name: "JobsDB", link: "https://www.jobsdb.com", region: "SE Asia" },
+        { name: "JobCentral", link: "https://www.jobcentral.com", region: "Singapore" },
+        { name: "Seek", link: "https://www.seek.com.au", region: "Australia/NZ" },
+        { name: "Reed", link: "https://www.reed.co.uk", region: "UK" },
+        { name: "Totaljobs", link: "https://www.totaljobs.com", region: "UK" },
+        { name: "StepStone", link: "https://www.stepstone.com", region: "Europe" },
+        { name: "Indeed Germany", link: "https://de.indeed.com", region: "Germany" },
+        { name: "Pôle Emploi", link: "https://www.pole-emploi.fr", region: "France" },
+        { name: "InfoJobs", link: "https://www.infojobs.com", region: "Spain/Latin America" },
+        { name: "Vagas", link: "https://www.vagas.com.br", region: "Brazil" },
+        { name: "Trovit", link: "https://www.trovit.com", region: "Worldwide" },
+        { name: "Jooble", link: "https://www.jooble.com", region: "Worldwide" },
+        { name: "CareerJet", link: "https://www.careerjet.com", region: "Worldwide" },
+        { name: "Adzuna", link: "https://www.adzuna.com", region: "Worldwide" },
+    ];
+
+    // ============================================================
+    // SORT
+    // ============================================================
+    visaData.sort((a, b) => a.name.localeCompare(b.name));
+    airlines.sort((a, b) => a.name.localeCompare(b.name));
+    hotels.sort((a, b) => a.name.localeCompare(b.name));
+    flights.sort((a, b) => a.name.localeCompare(b.name));
+    taxiData.sort((a, b) => a.name.localeCompare(b.name));
+    busData.sort((a, b) => a.name.localeCompare(b.name));
+    trainData.sort((a, b) => a.name.localeCompare(b.name));
+    shopData.sort((a, b) => a.name.localeCompare(b.name));
+    foodData.sort((a, b) => a.name.localeCompare(b.name));
+    jobData.sort((a, b) => a.name.localeCompare(b.name));
+
+    // ============================================================
+    // FUNCTIONS
+    // ============================================================
+    function toggleTheme() {
+        const html = document.documentElement;
+        const icon = document.getElementById('themeIcon');
+        const text = document.getElementById('themeText');
+        if (html.getAttribute('data-theme') === 'dark') {
+            html.removeAttribute('data-theme');
+            icon.className = 'fas fa-moon';
+            text.textContent = 'Dark';
+            localStorage.setItem('theme', 'light');
+        } else {
+            html.setAttribute('data-theme', 'dark');
+            icon.className = 'fas fa-sun';
+            text.textContent = 'Light';
+            localStorage.setItem('theme', 'dark');
+        }
+    }
+    if (localStorage.getItem('theme') === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        document.getElementById('themeIcon').className = 'fas fa-sun';
+        document.getElementById('themeText').textContent = 'Light';
+    }
+
+    function switchTab(tab) {
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.dataset.tab === tab) btn.classList.add('active');
+        });
+        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+        document.getElementById('tab-' + tab).classList.add('active');
+        if (tab === 'visa') renderVisa();
+        else if (tab === 'airline') renderAirline();
+        else if (tab === 'hotel') renderHotel();
+        else if (tab === 'flight') renderFlight();
+        else if (tab === 'taxi') renderTaxi();
+        else if (tab === 'bus') renderBus();
+        else if (tab === 'train') renderTrain();
+        else if (tab === 'shop') renderShop();
+        else if (tab === 'food') renderFood();
+        else if (tab === 'job') renderJob();
+    }
+
+    function renderGeneric(listId, noResultsId, data, searchInputId, label) {
+        const list = document.getElementById(listId);
+        const noResults = document.getElementById(noResultsId);
+        const searchInput = document.getElementById(searchInputId);
+        const searchTerm = searchInput.value.trim();
+
+        let filtered = [...data];
+        if (searchTerm) {
+            filtered = filtered.filter(item => 
+                item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                (item.region && item.region.toLowerCase().includes(searchTerm.toLowerCase())) ||
+                (item.country && item.country.toLowerCase().includes(searchTerm.toLowerCase()))
+            );
+        }
+
+        list.innerHTML = '';
+        if (filtered.length === 0) { noResults.style.display = 'block'; return; } else { noResults.style.display = 'none'; }
+
+        document.getElementById(label + 'Count').textContent = data.length;
+
+        filtered.forEach((item, index) => {
+            const card = document.createElement('div');
+            card.className = 'service-card ' + label;
+            card.style.animationDelay = (index * 10) + 'ms';
+            
+            let features = '';
+            if (item.type) features += `<span><i class="fas fa-tag"></i> ${item.type}</span>`;
+            if (item.region) features += `<span><i class="fas fa-map-marker-alt"></i> ${item.region}</span>`;
+            if (item.country) features += `<span><i class="fas fa-map-marker-alt"></i> ${item.country}</span>`;
+
+            const icons = {
+                visa: 'fas fa-passport',
+                airline: 'fas fa-plane',
+                hotel: 'fas fa-hotel',
+                flight: 'fas fa-ticket-alt',
+                taxi: 'fas fa-taxi',
+                bus: 'fas fa-bus',
+                train: 'fas fa-train',
+                shop: 'fas fa-shopping-cart',
+                food: 'fas fa-utensils',
+                job: 'fas fa-briefcase'
+            };
+
+            card.innerHTML = `
+                <span class="service-icon"><i class="${icons[label] || 'fas fa-link'}"></i></span>
+                <div class="service-name">${item.name}</div>
+                <div class="service-desc">${item.desc || ''}</div>
+                <div class="service-features">${features}</div>
+                <a href="${item.link}" target="_blank" rel="noopener noreferrer" class="service-link">
+                    Visit <i class="fas fa-arrow-right"></i>
+                </a>
+            `;
+            list.appendChild(card);
+        });
+    }
+
+    function renderVisa() { 
+        const list = document.getElementById('visaList');
+        const noResults = document.getElementById('visaNoResults');
+        const searchInput = document.getElementById('visaSearch');
+        const searchTerm = searchInput.value.trim();
+        let filtered = [...visaData];
+        if (searchTerm) filtered = filtered.filter(v => v.name.toLowerCase().includes(searchTerm.toLowerCase()));
+        list.innerHTML = '';
+        if (filtered.length === 0) { noResults.style.display = 'block'; return; } else { noResults.style.display = 'none'; }
+        document.getElementById('visaCount').textContent = visaData.length;
+        filtered.forEach((item, index) => {
+            const card = document.createElement('div');
+            card.className = 'service-card visa';
+            card.style.animationDelay = (index * 10) + 'ms';
+            card.innerHTML = `
+                <span class="service-icon"><i class="fas fa-passport"></i></span>
+                <div class="service-name">${item.name}</div>
+                <div class="service-desc">Visa: ${item.type.charAt(0).toUpperCase() + item.type.slice(1)}</div>
+                <div class="service-features"><span><i class="fas fa-tag"></i> ${item.type}</span></div>
+                <a href="${item.link}" target="_blank" rel="noopener noreferrer" class="service-link">
+                    Apply <i class="fas fa-arrow-right"></i>
+                </a>
+            `;
+            list.appendChild(card);
+        });
+    }
+
+    function renderAirline() { renderGeneric('airlineList', 'airlineNoResults', airlines, 'airlineSearch', 'airline'); }
+    function renderHotel() { renderGeneric('hotelList', 'hotelNoResults', hotels, 'hotelSearch', 'hotel'); }
+    function renderFlight() { renderGeneric('flightList', 'flightNoResults', flights, 'flightSearch', 'flight'); }
+    function renderTaxi() { renderGeneric('taxiList', 'taxiNoResults', taxiData, 'taxiSearch', 'taxi'); }
+    function renderBus() { renderGeneric('busList', 'busNoResults', busData, 'busSearch', 'bus'); }
+    function renderTrain() { renderGeneric('trainList', 'trainNoResults', trainData, 'trainSearch', 'train'); }
+    function renderShop() { renderGeneric('shopList', 'shopNoResults', shopData, 'shopSearch', 'shop'); }
+    function renderFood() { renderGeneric('foodList', 'foodNoResults', foodData, 'foodSearch', 'food'); }
+    function renderJob() { renderGeneric('jobList', 'jobNoResults', jobData, 'jobSearch', 'job'); }
+
+    function filterVisa() { renderVisa(); }
+    function filterAirline() { renderAirline(); }
+    function filterHotel() { renderHotel(); }
+    function filterFlight() { renderFlight(); }
+    function filterTaxi() { renderTaxi(); }
+    function filterBus() { renderBus(); }
+    function filterTrain() { renderTrain(); }
+    function filterShop() { renderShop(); }
+    function filterFood() { renderFood(); }
+    function filterJob() { renderJob(); }
+
+    // ============================================================
+    // SCROLL
+    // ============================================================
+    window.addEventListener('scroll', function() {
+        const btn = document.getElementById('topBtn');
+        if (window.scrollY > 400) { btn.style.display = 'flex'; btn.style.opacity = '1'; } 
+        else { btn.style.display = 'none'; btn.style.opacity = '0'; }
+    });
+
+    document.addEventListener('keydown', function(e) {
+        if (e.ctrlKey && e.key === 'd') { e.preventDefault(); toggleTheme(); }
+    });
+
+    // ============================================================
+    // INIT
+    // ============================================================
+    setTimeout(() => {
+        renderVisa();
+        renderAirline();
+        renderHotel();
+        renderFlight();
+        renderTaxi();
+        renderBus();
+        renderTrain();
+        renderShop();
+        renderFood();
+        renderJob();
+    }, 200);
+</script>
+
+</body>
+</html>
